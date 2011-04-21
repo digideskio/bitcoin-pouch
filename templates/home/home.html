@@ -1,0 +1,28 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{{ user }}{% endblock %}
+
+{% block body %}
+	<div>
+		<h1>Your Account</h1>
+	</div>
+    <div class="leftPane">
+    	<h3>Send Bitcoins<h3>
+    	<h3>Account History</h3>
+    </div>
+    
+    <div class="rightPane">
+    	<h3>Your Addresses</h3>
+    	<h3>Address Book</h3>
+	</div>
+{% endblock %}
+
+{% block extra_body %}
+<script>
+    $("#id_username").focus();
+</script>
+{% endblock %}

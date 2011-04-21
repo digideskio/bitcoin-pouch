@@ -1,0 +1,63 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load ifsetting_tag %}
+
+{% block head_title %}Making Bitcoins Easy.{% endblock %}
+
+{% block body %}
+	<div>
+		<h1>Bitcoin Pouch makes managing your bitcoins easy.</h1>
+	</div>
+    <div class="leftPane">
+   	<h1>Log In</h1>
+    
+    {% if user.is_authenticated %}
+        <p><span class="warning">{% trans "Note" %}</span>: {% blocktrans %}you are already logged in as {{ user }}.{% endblocktrans %}</p>
+    {% endif %}
+    
+    <form class="login uniForm inlineLabels" method="POST" action="{% url acct_login %}">
+            {{ login_form|as_uni_form }}
+            <div class="form_block">
+                <a href="{% url acct_passwd_reset %}">{% trans "Forgot password?" %}</a>
+            </div>
+                <input type="submit" value="{% trans "Log in &raquo;" %}" />
+        
+    </form>
+    <br /><br />
+    {# @@@ why isn't this just does as a form object ? #}
+    <form class="login uniForm inlineLabels" action="/openid/register/" method="POST">
+            {% if url_required %}
+                <div class="ctrlHolder error">
+                    <p class="errorField">
+                        <strong>This field is required.</strong>
+                    </p>
+                    Or log in with your OpenID:<br />
+                    <input class="openid" type="text" name="openid_url" /> <input type="submit" value="{% trans "Log in &raquo;" %}" />
+                </div>
+            {% else %}
+                <div class="ctrlHolder">
+                    Or log in with your OpenID:<br />
+                    <input class="openid" type="text" name="openid_url" /> <input type="submit" value="{% trans "Log in &raquo;" %}" />
+                </div>
+            {% endif %}
+    </form>
+    <p>{% blocktrans %}If you have any trouble logging in to your account, contact us at <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>.{% endblocktrans %}</p>
+    
+    </div>
+    
+    <div class="rightPane">
+    <h1>Sign Up</h1>
+	<form class="signup uniForm inlineLabels" id="signup_form" method="post" action="{% url acct_signup %}">
+			{{ signup_form|as_uni_form }}
+				<input type="submit" value="{% trans "Sign Up &raquo;" %}" />
+	</form>
+	</div>
+{% endblock %}
+
+{% block extra_body %}
+<script>
+    $("#id_username").focus();
+</script>
+{% endblock %}

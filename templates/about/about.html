@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "About" %}{% endblock %}
+
+{% block body %}
+<h1>Bitcoins are...</h1>
+<object width="640" height="390"><param name="movie" value="http://www.youtube.com/v/Um63OQz3bjo&hl=en_US&feature=player_embedded&version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><embed src="http://www.youtube.com/v/Um63OQz3bjo&hl=en_US&feature=player_embedded&version=3" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="390"></embed></object>
+
+<h1>Bitcoin Pouch is...</h1>
+<h3>Quick</h3>
+Because the bitcoins in your Bitcoin Pouch have been pre-verified, you don't have to wait for a miner to confirm
+any transactions between users. Just type the username of the member you want to send coins to and you're ready to go.
+
+<h3>Mobile</h3>
+Bitcoin Pouch also features the easiest-to-use cross-platform mobile interface. Sending and receiving bitcoins is as
+easy as pulling out your cellphone and firing up Bitcoin Pouch.
+
+<h3>Easy</h3>
+No download or installation required. Just <a href="{% url acct_signup %}">sign up</a> and you can start using bitcoins right away!
+{% endblock %}

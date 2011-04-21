@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Terms of Service" %}{% endblock %}
+
+{% block body %}
+    <h1>Terms of Service</h1>
+    Bitcoin Pouch reserves the right to deny service to anyone for whatever reason. Under normal circumstances, if your
+    account is deactivated you will be allowed one transaction to withdraw your bitcoins to another bitcoin address. If
+    the bitcoins in your account were gained by defrauding other Bitcoin Pouch users, you forfeit your right to them.
+    
+    <h1>Things to Avoid Doing</h1>
+    Doing any of the below is considered grounds for the deactivation of your account:
+    <ul>
+    	<li>Defrauding other Bitcoin Pouch users.</li>
+    	<li>Egregious and verifiable fraud against the Bitcoin community.</li>
+    	<li>Actively preventing others from using Bitcoin Pouch.</li>
+    	<li>Actively attacking Bitcoin Pouch.</li>
+    </ul>
+    In a nutshell: be nice to us and we'll be nice to you.
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "Donate" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Donate" %}</h1>
+<p>
+    Bitcoin Pouch does not exact any transaction fees and is advertisement-free. It is a community-supported service and could not exist without donations from people like you.
+</p>
+<p>
+To donate, please send bitcoins to
+<h3>1DynMozzoLRNaxUYhEv8ySdL1nrK2dkFeA</h3>
+</p>
+    {% if user.is_authenticated %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load openid_tags %}
+{% load ifsetting_tag %}
+
+{% block extra_head_base %}
+    {% block extra_head %}{% endblock %}
+{% endblock %}
+
+{% block right_tabs %}
+    {% if user.is_authenticated %}
+        <ul class="tabs">{% spaceless %}
+        	<li id="tab_home"><a href="{% url homepage %}">Home</a></li>
+        	<li id="tab_profile"><a href="{% url profile_detail user %}">Profile</a></li>
+        	<li id="tab_notices"><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li>
+            <li id="tab_logout"><a href="{% url acct_logout %}">Logout</a></li>
+        {% endspaceless %}</ul>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+    <a href="{% url about %}">{% trans "About" %}</a>
+    - <a href="{% url terms %}">{% trans "Terms of Service" %}</a>
+    - <a href="{% url privacy %}">{% trans "Privacy Policy" %}</a>
+    - <a href="{% url donate %}">{% trans "Donate" %}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{
+	"RPC": { 
+		"url": "/api/bitcoind/",
+		"user": "",
+		"password": "",
+		"account": ""
+	},
+	"labelsmode": 1
+}

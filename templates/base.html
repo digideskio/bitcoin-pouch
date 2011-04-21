@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+{% block html_declare %}
+<html lang="en">
+{% endblock %}
+
+<head>
+    <title>{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" />
+    <link rel="stylesheet" type="text/css" media="screen"  href="{{ MEDIA_URL }}css/base.css" />
+    {% block extra_head_base %}
+            {% block extra_head %}{% endblock %}
+    {% endblock %}
+</head>
+
+<body onorientationchange="setTimeout(scrollTo0, 10);" onload="setTimeout(scrollTo0, 10);">
+		{% if FACEBOOK_APP_ID %}
+		  <div id="fb-root"></div>
+		  <script>
+		  window.fbAsyncInit = function() {
+			FB.init({appId: '{{ FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true});
+			FB.Event.subscribe('auth.sessionChange', function(response) {
+			  if (response.session) {
+				  window.location = '{% url socialauth_facebook_login_done %}';
+			  } else {
+				  //window.location = '{% url socialauth_social_logout %}';
+			  }
+			});
+		  };
+		  (function() {
+			var e = document.createElement('script');
+			e.type = 'text/javascript';
+			e.src = document.location.protocol +
+			  '//connect.facebook.net/en_US/all.js';
+			e.async = true;
+			document.getElementById('fb-root').appendChild(e);
+		  }());
+		  </script>    
+		{% endif %}
+	<div id="heading">
+		<a class="logo" href="{% url homepage %}"><img src="{{ MEDIA_URL }}/images/pouch.png" alt="Pinax"/></a>
+		{% block right_tabs %}
+    	{% endblock %}
+	</div>
+	<div id="content">
+	{% block body %}
+	{% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+    
+    {% block main_content %}
+    {% endblock %}
+    
+    {% block content %}
+    {% endblock %}
+    </div>
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>
