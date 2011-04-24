@@ -14,8 +14,7 @@ from bitcoind import util
 from django.db import connection, transaction
 from account.models import MAX_USERNAME_LENGTH
 
-#conn = bitcoind.connect_to_local()
-conn = bitcoind.connect_to_remote("ryepdx", "jsonrpc", host="72.249.191.158")
+conn = bitcoind.connect_to_local()
 
 @jsonrpc_method('getblockcount')
 def getblockcount(request):

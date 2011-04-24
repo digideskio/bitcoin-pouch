@@ -22,20 +22,9 @@ if association_model is not None:
 
 def direct(request):
     site = Site.objects.get_current()
-    if request.META['HTTP_HOST'] == site.domain or request.META['HTTP_HOST'] == "localhost:8000":
-        # The visitor has hit the main webpage, so redirect to /mypage/ 
-        if request.user.is_authenticated():
-            return render_to_response('js-remote/index.html', {}, context_instance=RequestContext(request))
-        else:
-            return render_to_response('home/unauthenticated.html', {"login_form": LoginForm(), "signup_form": SignupForm()}, context_instance=RequestContext(request))
-    else: # It's a subdomain
-        # Split the domain into it's parts, remove the main part of the domain 
-        # from the requested host, and we're left with one variable: 'subdomain'.
-        # We also strip out the 'www.' non web-savvy users often type 'www' in 
-        # front of every website they visit, so let's not show them an error message!
-        domain_parts = site.domain.split(".")
-        domain = ".".join(domain_parts[1:])
-        subdomain = request.META['HTTP_HOST'].replace(domain, '').replace('.', '').replace('www', '')
-        return HttpResponseRedirect(reverse("profile_detail", subdomain))
-    
+    # The visitor has hit the main webpage, so redirect to /mypage/ 
+    if request.user.is_authenticated():
+        return render_to_response('js-remote/index.html', {}, context_instance=RequestContext(request))
+    else:
+        return render_to_response('home/unauthenticated.html', {"login_form": LoginForm(), "signup_form": SignupForm()}, context_instance=RequestContext(request))
 

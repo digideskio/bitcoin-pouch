@@ -99,8 +99,7 @@ class SignupForm(forms.Form):
         username = self.cleaned_data["username"]
         email = self.cleaned_data["email"]
         password = self.cleaned_data["password1"]
-        #conn = bitcoind.connect_to_local()
-        conn = bitcoind.connect_to_remote("ryepdx", "jsonrpc", host="72.249.191.158")
+        conn = bitcoind.connect_to_local()
         
         if self.cleaned_data["confirmation_key"]:
             from friends.models import JoinInvitation # @@@ temporary fix for issue 93

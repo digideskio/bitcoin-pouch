@@ -95,7 +95,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'pinax.middleware.security.HideSensistiveFieldsMiddleware',
-    'socialregistration.middleware.FacebookMiddleware',
+    #'socialregistration.middleware.FacebookMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -113,7 +113,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "socialauth.context_processors.facebook_api_key",
+    #"socialauth.context_processors.facebook_api_key",
     #'django.core.context_processors.media',
     #"django.contrib.auth.context_processors.auth",
     #"django.core.context_processors.request",
