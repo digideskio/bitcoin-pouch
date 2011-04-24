@@ -11,4 +11,5 @@ h3 {
 #container {
 	border: none !important;
 	margin: 0px !important;
+	max-width: none;
 }
