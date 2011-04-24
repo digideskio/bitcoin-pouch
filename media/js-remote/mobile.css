@@ -10,6 +10,20 @@ h3 {
 
 #container {
 	border: none !important;
-	margin: 0px !important;
+	margin: 0px;
 	max-width: none;
+	clear: both;
+}
+
+#heading
+{
+	width: 100%;
+}
+
+ul.tabs
+{
+	font-size: .75em;
+	margin: 0px;
+	padding: 0px;
+	padding-top: .5em;
 }
