@@ -4,10 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 
-from timezones.fields import TimeZoneField
-
 class Profile(models.Model):
-    
+
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     name = models.CharField(_('name'), max_length=50, null=True, blank=True)
     about = models.TextField(_('about'), null=True, blank=True)
