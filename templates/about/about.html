@@ -9,14 +9,31 @@
 <object width="640" height="390"><param name="movie" value="http://www.youtube.com/v/Um63OQz3bjo&hl=en_US&feature=player_embedded&version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><embed src="http://www.youtube.com/v/Um63OQz3bjo&hl=en_US&feature=player_embedded&version=3" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="390"></embed></object>
 
 <h1>Bitcoin Pouch is...</h1>
+
+<h3>Easy</h3>
+No download or installation required. Just <a href="{% url acct_signup %}">sign up</a> and you can start using bitcoins right away!
+{% endblock %}
+
 <h3>Quick</h3>
 Because the bitcoins in your Bitcoin Pouch have been pre-verified, you don't have to wait for a miner to confirm
 any transactions between users. Just type the username of the member you want to send coins to and you're ready to go.
+
+<h3>Free</h3>
+No added transaction fees here! Bitcoin Pouch is entirely supported by user donations and the efforts of our volunteers.
 
 <h3>Mobile</h3>
 Bitcoin Pouch also features the easiest-to-use cross-platform mobile interface. Sending and receiving bitcoins is as
 easy as pulling out your cellphone and firing up Bitcoin Pouch.
 
-<h3>Easy</h3>
-No download or installation required. Just <a href="{% url acct_signup %}">sign up</a> and you can start using bitcoins right away!
-{% endblock %}
+<h3>Open Source</h3>
+No nasty surprises, no proprietary code, no secrets. Bitcoin Pouch is committed to creating an open financial system
+held accountable to the people it serves. Part of that means making the source code of our website available for anyone
+to examine or modify. (You can find it on <a href="https://github.com/ryepdx/bitcoin-pouch">GitHub</a>, if you're curious.)
+<p>In the spirit of full disclosure alluded to in the paragraph above, Bitcoin Pouch is presently running on:</p>
+<ul>
+	<li>Ubuntu 10.10</li>
+	<li>Django 1.0</li>
+	<li>Bitcoin 0.3.20</li>
+	<li>Apache 2.2.16</li>
+	<li>MySQL 14.14</li>
+</ul>
