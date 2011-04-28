@@ -235,7 +235,7 @@ class JSONRPCSite(object):
     
     http = HttpResponse(json_rpc, status=status, content_type='application/json-rpc')
     http['Access-Control-Allow-Origin'] = "*"
-    
+    http['Access-Control-Allow-Headers'] = "Authorization"
     return http
   
   def procedure_desc(self, key):
