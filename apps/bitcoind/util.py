@@ -47,6 +47,8 @@ class DStruct(object):
 def getaccount(user, label):
     if label == "*":
         return label
+    elif label == None:
+		return unicode(user) + "+"
     else:
         return unicode(user) + "+" + label
     

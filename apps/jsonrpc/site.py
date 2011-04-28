@@ -196,7 +196,6 @@ class JSONRPCSite(object):
     try:
       # in case we do something json doesn't like, we always get back valid json-rpc response
       response = self.empty_response()
-      response['Access-Control-Allow-Origin'] = "*"
       if request.method.lower() == 'get':
         valid, D = self.validate_get(request, method)
         if not valid:
@@ -212,11 +211,9 @@ class JSONRPCSite(object):
       
       if type(D) is list:
         response = [self.response_dict(request, d, is_batch=True, json_encoder=json_encoder)[0] for d in D]
-        response['Access-Control-Allow-Origin'] = "*"
         status = 200
       else:
         response, status = self.response_dict(request, D, json_encoder=json_encoder)
-        response['Access-Control-Allow-Origin'] = "*"
         if response is None and (not u'id' in D or D[u'id'] is None): # a notification
           return HttpResponse('', status=status)
       
@@ -236,7 +233,10 @@ class JSONRPCSite(object):
       
       json_rpc = dumps(response,cls=json_encoder)
     
-    return HttpResponse(json_rpc, status=status, content_type='application/json-rpc')
+    http = HttpResponse(json_rpc, status=status, content_type='application/json-rpc')
+    http['Access-Control-Allow-Origin'] = "*"
+    
+    return http
   
   def procedure_desc(self, key):
     M = self.urls[key]
