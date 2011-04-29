@@ -260,7 +260,6 @@ def sendtoaddress(request, bitcoinaddress, amount, comment=None, comment_to=None
             raise _wrap_exception(e.error)
 
 @jsonrpc_method('getreceivedbyaddress')
-@logged_in_or_basicauth()
 def getreceivedbyaddress(request, bitcoinaddress, minconf=1):
     """
     Returns the total amount received by a bitcoin address in transactions with at least a
@@ -321,6 +320,7 @@ def listreceivedbyaddress(request, minconf=1, includeempty=False):
         raise _wrap_exception(e.error)
     
 @jsonrpc_method('listreceivedbyaccount')
+@logged_in_or_basicauth()
 def listreceivedbyaccount(request, minconf=1, includeempty=False):
     """
     Returns a list of accounts.
@@ -344,6 +344,7 @@ def listreceivedbyaccount(request, minconf=1, includeempty=False):
         raise _wrap_exception(e.error)
 
 @jsonrpc_method('listaccounts')
+@logged_in_or_basicauth()
 def listaccounts(request):
     result = {}
     for address in Address.objects.filter(user=request.user):
@@ -352,6 +353,7 @@ def listaccounts(request):
     return result
 
 @jsonrpc_method('listtransactions')
+@logged_in_or_basicauth()
 def listtransactions(request, label, count=10):
     """
     Returns a list of the last transactions for an account.
@@ -403,6 +405,7 @@ def validateaddress(request, validateaddress):
         raise _wrap_exception(e.error)
     
 @jsonrpc_method('getbalance')
+@logged_in_or_basicauth()
 def getbalance(request, label=None, minconf=0):
     """
     Get the current balance, either for an account or the total server balance.
@@ -417,6 +420,7 @@ def getbalance(request, label=None, minconf=0):
         raise _wrap_exception(e.error)
     
 @jsonrpc_method('move')
+@logged_in_or_basicauth()
 def move(request, fromlabel, toaccount, amount, minconf=1, comment=None):
     """
     Move from one account in your wallet to another.
@@ -448,6 +452,7 @@ def move(request, fromlabel, toaccount, amount, minconf=1, comment=None):
         raise _wrap_exception(e.error)
 
 @jsonrpc_method('sendfrom')
+@logged_in_or_basicauth()
 def sendfrom(request, fromlabel, tobitcoinaddress, amount, minconf=1, comment=None, comment_to=None):
     """
     Sends amount from account's balance to bitcoinaddress. This method will fail 
