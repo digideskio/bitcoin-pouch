@@ -38,6 +38,9 @@
 		{% endif %}
 	<div id="heading">
 		<a class="logo" href="{% url homepage %}"><img src="{{ MEDIA_URL }}/images/pouch.png" alt="Pinax"/></a>
+		{% ifequal subdomain "test" %}
+			<strong>TESTNET</strong>
+		{% endifequal %}
 		{% block right_tabs %}
     	{% endblock %}
 	</div>
