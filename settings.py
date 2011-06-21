@@ -88,7 +88,7 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'about.middleware.subdomain',
-    'django.middleware.csrf.CsrfViewMiddleware'
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'paranoidsessions.ParanoidSessionMiddleware',
