@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
 ############################################################################
-def basicauth():
+def basicauth(realm=""):
     """
     Does not care if they are logged in or not.
     Only wants http-authorization.
