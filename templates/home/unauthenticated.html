@@ -18,6 +18,7 @@
     {% endif %}
     
     <form class="login uniForm inlineLabels" method="POST" action="{% url acct_login %}">
+    		{% csrf_token %}
             {{ login_form|as_uni_form }}
             <div class="form_block">
                 <a href="{% url acct_passwd_reset %}">{% trans "Forgot password?" %}</a>
@@ -28,6 +29,7 @@
     <br /><br />
     {# @@@ why isn't this just does as a form object ? #}
     <form class="login uniForm inlineLabels" action="/openid/register/" method="POST">
+    		{% csrf_token %}
             {% if url_required %}
                 <div class="ctrlHolder error">
                     <p class="errorField">
@@ -50,6 +52,7 @@
     <div class="rightPane">
     <h1>Sign Up</h1>
 	<form class="signup uniForm inlineLabels" id="signup_form" method="post" action="{% url acct_signup %}">
+			{% csrf_token %}
 			{{ signup_form|as_uni_form }}
 				<input type="submit" value="{% trans "Sign Up &raquo;" %}" />
 	</form>

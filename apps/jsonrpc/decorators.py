@@ -3,6 +3,21 @@ import base64
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
+############################################################################
+def basicauth():
+    """
+    Does not care if they are logged in or not.
+    Only wants http-authorization.
+    Useful in protecting against CSRF attacks.
+    """
+    def view_decorator(func):
+        def wrapper(request, *args, **kwargs):
+            return view_or_basicauth(func, request,
+                                     lambda u: False,
+                                     realm, *args, **kwargs)
+        return wrapper
+    return view_decorator
+
 #############################################################################
 def view_or_basicauth(view, request, test_func, realm = "", *args, **kwargs):
     """

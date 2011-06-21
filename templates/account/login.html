@@ -24,6 +24,7 @@
     {% endif %}
     
     <form class="login uniForm" method="POST" action="{% url acct_login %}">
+    		{% csrf_token %}
             {{ form|as_uni_form }}
             <div class="form_block">
                 <a href="{% url acct_passwd_reset %}">{% trans "Forgot password?" %}</a>
