@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     (r'^notices/', include('notification.urls')),
     (r'^announcements/', include('announcements.urls')),
     #(r'^socialauth/', include('socialauth.urls')),
-    (r'^admin/(.*)', admin.site.root),
+    #(r'^admin/(.*)', admin.site.root),
     (r'^api/bitcoind/', include('bitcoind.urls')),
     (r'^js-remote/(.+)', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_ROOT, 'media', 'js-remote')}),
     (r'^js-remote/', direct_to_template, {"template": "js-remote/index.html"})
