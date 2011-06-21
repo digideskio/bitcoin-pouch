@@ -171,7 +171,8 @@ INSTALLED_APPS = (
     'jsonrpc',
     'debug_toolbar',
     'bitcoind',
-    'django_bcrypt'
+    'django_bcrypt',
+    'south'
 )
 
 ABSOLUTE_URL_OVERRIDES = {
