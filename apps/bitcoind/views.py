@@ -291,7 +291,7 @@ def getreceivedbyaccount(request, label, minconf=1):
     """
     try:
         account = util.getaccount(request.user, label)
-        amount = conn.getreceivedbyaccount(account, minconf)
+        return conn.getreceivedbyaccount(account, minconf)
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
 
