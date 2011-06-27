@@ -481,7 +481,12 @@ def sendfrom(request, fromlabel, tobitcoinaddress, amount, minconf=1, comment=No
         # immediately, since it's on our server.
         toaddress = Address.objects.get(address=tobitcoinaddress)
         toaccount = util.getaccount(toaddress.user, toaddress.label)
+        
         fromaccount = util.getaccount(request.user, fromlabel)
+        try:
+            fromaddress = Address.objects.get(user=request.user, label=fromlabel)
+        except ObjectDoesNotExist:
+            raise _wrap_exception("Could not find account \"%s\"" % fromlabel)
         
         # Use the "move" method instead.
         if comment is None:
