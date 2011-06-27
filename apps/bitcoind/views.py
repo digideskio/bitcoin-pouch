@@ -476,10 +476,10 @@ def sendfrom(request, fromlabel, tobitcoinaddress, amount, minconf=1, comment=No
     """ 
     # See if the address we are sending to exists in our database.
     # If so, use move. If not, use the requested method. 
-    if Address.objects.filter(address=bitcoinaddress).count() > 0:
+    if Address.objects.filter(address=tobitcoinaddress).count() > 0:
         # Increase the balance of the address we're sending to
         # immediately, since it's on our server.
-        toaddress = Address.objects.get(address=bitcoinaddress)
+        toaddress = Address.objects.get(address=tobitcoinaddress)
         toaccount = util.getaccount(toaddress.user, toaddress.label)
         fromaccount = util.getaccount(request.user, fromlabel)
         
