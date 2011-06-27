@@ -271,7 +271,7 @@ def getreceivedbyaddress(request, bitcoinaddress, minconf=1):
     - *minconf* -- Number of confirmations to require, defaults to 1.
     """
     try:
-        return conn.getreceivedbyaddress(bitcoinaddress, minconf)
+        return conn.getreceivedbyaddress(bitcoinaddress, minconf).__dict__
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
     
@@ -290,7 +290,7 @@ def getreceivedbyaccount(request, label, minconf=1):
     """
     try:
         account = util.getaccount(request.user, label)
-        return conn.getreceivedbyaccount(account, minconf)
+        return conn.getreceivedbyaccount(account, minconf).__dict__
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
 
