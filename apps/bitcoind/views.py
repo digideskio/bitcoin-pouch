@@ -96,7 +96,7 @@ def getnewaddress(request, label=None):
 
 @basicauth()
 @jsonrpc_method('getaccountaddress')
-def getaccountaddress(request, label):
+def getaccountaddress(request, label=""):
     """
     Returns the current bitcoin address for receiving payments to an account.
     
@@ -420,14 +420,14 @@ def getbalance(request, label=None, minconf=0):
     
 @basicauth()
 @jsonrpc_method('move')
-def move(request, fromlabel, toaccount, amount, minconf=1, comment=None):
+def move(request, fromlabel, tolabel, amount, minconf=1, comment=None):
     """
     Move from one account in your wallet to another.
     
     Arguments:
     
-    - *fromaccount* -- Source account name.
-    - *toaccount* -- Destination account name.
+    - *fromlabel* -- Source account name.
+    - *tolabel* -- Destination account name.
     - *amount* -- Amount to transfer.
     - *minconf* -- Minimum number of confirmations required for transferred balance.
     - *comment* -- Comment to add to transaction log.
@@ -441,7 +441,12 @@ def move(request, fromlabel, toaccount, amount, minconf=1, comment=None):
         except ObjectDoesNotExist:
             raise _wrap_exception("Could not find account \"%s\"" % fromlabel)
         
-        username, tolabel = util.getusername_and_label(toaccount)
+        
+        toaccount = util.getaccount(request.user, tolabel)
+        try:
+            toaddress = Address.objects.get(user=request.user, label=tolabel)
+        except ObjectDoesNotExist:
+            raise _wrap_exception("Could not find account \"%s\"" % tolabel)
         
         if comment is None:
             return conn.move(fromaccount, toaccount, amount, minconf)
