@@ -338,7 +338,7 @@ def listreceivedbyaccount(request, minconf=1, includeempty=False):
         for address in Address.objects.filter(user=request.user):
             amount = conn.getreceivedbyaccount(address.accountName(), minconf=minconf)
             if includeempty or amount > 0:
-                acounts.append({"account":address.label, "amount":amount})
+                accounts.append({"account":address.label, "amount":amount})
         return accounts
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
