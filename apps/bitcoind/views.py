@@ -150,7 +150,7 @@ def setaccount(request, bitcoinaddress, label):
     try:
         address = Address.objects.get(user=request.user, address=bitcoinaddress)
     except ObjectDoesNotExist, e:
-        raise _wrap_exception(e.error);
+        raise _wrap_exception("You are not the known owner of this address.");
     
     # Make sure there aren't any other addresses trying to
     # use this label. This may not be orthogonal to the
@@ -182,8 +182,7 @@ def getaccount(request, bitcoinaddress):
     """
     # Make sure the user owns the requested account.
     try:
-        address = Address.objects.get(address=bitcoinaddress, user=request.user)
-        return address[0]
+        return Address.objects.get(address=bitcoinaddress, user=request.user).label
     except Exception, e:
         raise _wrap_exception(e)
 
