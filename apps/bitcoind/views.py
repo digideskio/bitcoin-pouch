@@ -52,8 +52,8 @@ def getinfo(request):
     """
     return conn.getinfo().__dict__
 
-@jsonrpc_method('getnewaddress')
 @basicauth()
+@jsonrpc_method('getnewaddress')
 def getnewaddress(request, label=None):
     """
     Returns a new bitcoin address for receiving payments.
@@ -94,8 +94,8 @@ def getnewaddress(request, label=None):
 
     return addressObj.address
 
-@jsonrpc_method('getaccountaddress')
 @basicauth()
+@jsonrpc_method('getaccountaddress')
 def getaccountaddress(request, label):
     """
     Returns the current bitcoin address for receiving payments to an account.
@@ -117,8 +117,8 @@ def getaccountaddress(request, label):
     return address.address
     
 
-@jsonrpc_method('setaccount')
 @basicauth()
+@jsonrpc_method('setaccount')
 def setaccount(request, bitcoinaddress, label):
     """
     Sets the account associated with the given address.
@@ -170,8 +170,8 @@ def setaccount(request, bitcoinaddress, label):
     
     return result
     
-@jsonrpc_method('getaccount')
 @basicauth()
+@jsonrpc_method('getaccount')
 def getaccount(request, bitcoinaddress):
     """
     Returns the account associated with the given address.
@@ -187,8 +187,8 @@ def getaccount(request, bitcoinaddress):
     except Exception, e:
         raise _wrap_exception(e)
 
-@jsonrpc_method('getaddressesbyaccount')
 @basicauth()
+@jsonrpc_method('getaddressesbyaccount')
 def getaddressesbyaccount(request, label):
     """
     Returns the list of addresses for the given account.
@@ -203,8 +203,8 @@ def getaddressesbyaccount(request, label):
     #    raise _wrap_exception(e.error)
     return [address.address for address in Address.objects.filter(user=request.user, label=label)]
 
-@jsonrpc_method('sendtoaddress')
 @basicauth()
+@jsonrpc_method('sendtoaddress')
 def sendtoaddress(request, bitcoinaddress, amount, comment=None, comment_to=None, minconf=0):
     """
     Sends *amount* from the server's available balance to *bitcoinaddress*.
@@ -276,8 +276,8 @@ def getreceivedbyaddress(request, bitcoinaddress, minconf=1):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
     
-@jsonrpc_method('getreceivedbyaccount')
 @basicauth()
+@jsonrpc_method('getreceivedbyaccount')
 def getreceivedbyaccount(request, label, minconf=1):
     """
     Returns the total amount received by addresses with an account in transactions with 
@@ -295,8 +295,8 @@ def getreceivedbyaccount(request, label, minconf=1):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
 
-@jsonrpc_method('listreceivedbyaddress')
 @basicauth()
+@jsonrpc_method('listreceivedbyaddress')
 def listreceivedbyaddress(request, minconf=1, includeempty=False):
     """
     Returns a list of addresses.
@@ -319,8 +319,8 @@ def listreceivedbyaddress(request, minconf=1, includeempty=False):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
     
-@jsonrpc_method('listreceivedbyaccount')
 @basicauth()
+@jsonrpc_method('listreceivedbyaccount')
 def listreceivedbyaccount(request, minconf=1, includeempty=False):
     """
     Returns a list of accounts.
@@ -343,8 +343,8 @@ def listreceivedbyaccount(request, minconf=1, includeempty=False):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
 
-@jsonrpc_method('listaccounts')
 @basicauth()
+@jsonrpc_method('listaccounts')
 def listaccounts(request):
     result = {}
     for address in Address.objects.filter(user=request.user):
@@ -352,8 +352,8 @@ def listaccounts(request):
         
     return result
 
-@jsonrpc_method('listtransactions')
 @basicauth()
+@jsonrpc_method('listtransactions')
 def listtransactions(request, label, count=10):
     """
     Returns a list of the last transactions for an account.
@@ -404,8 +404,8 @@ def validateaddress(request, validateaddress):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
     
-@jsonrpc_method('getbalance')
 @basicauth()
+@jsonrpc_method('getbalance')
 def getbalance(request, label=None, minconf=0):
     """
     Get the current balance, either for an account or the total server balance.
@@ -419,8 +419,8 @@ def getbalance(request, label=None, minconf=0):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
     
-@jsonrpc_method('move')
 @basicauth()
+@jsonrpc_method('move')
 def move(request, fromlabel, toaccount, amount, minconf=1, comment=None):
     """
     Move from one account in your wallet to another.
@@ -451,8 +451,8 @@ def move(request, fromlabel, toaccount, amount, minconf=1, comment=None):
     except JSONRPCException, e:
         raise _wrap_exception(e.error)
 
-@jsonrpc_method('sendfrom')
 @basicauth()
+@jsonrpc_method('sendfrom')
 def sendfrom(request, fromlabel, tobitcoinaddress, amount, minconf=1, comment=None, comment_to=None):
     """
     Sends amount from account's balance to bitcoinaddress. This method will fail 
