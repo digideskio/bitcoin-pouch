@@ -1,2 +1,4 @@
 The source code for the community-driven bitcoin service, Bitcoin Pouch.
 Based on Pinax 0.7.3. Follow the deployment instructions at http://pinaxproject.com/docs/0.7/ to get started after downloading.
+
+NOTE: This is an old project and should not be used as the foundation for any kind of product. Look at Coinpunk for a better approach to managing wallets: https://github.com/kyledrake/coinpunk
